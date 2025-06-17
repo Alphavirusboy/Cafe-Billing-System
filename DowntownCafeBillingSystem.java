@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class DowntownCafeBillingSystem extends JFrame {
 
+    private static final long serialVersionUID = 1L;
+
     private JTextArea billArea;
     private JLabel totalLabel, finalAmountLabel;
     private JTextField discountField, customerNameField, phoneNumberField, billNumberField;
@@ -44,7 +46,7 @@ public class DowntownCafeBillingSystem extends JFrame {
         setSize(700, 900);
         setLocationRelativeTo(null);
 
-        // Professional gradient background
+        // Gradient background
         JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -58,22 +60,16 @@ public class DowntownCafeBillingSystem extends JFrame {
         backgroundPanel.setLayout(null);
         add(backgroundPanel);
 
-        // Logo
-        ImageIcon logoIcon = new ImageIcon("resources/downtown_cafe_logo.png");
-        JLabel logoLabel;
-        if (logoIcon.getIconWidth() > 0) {
-            logoLabel = new JLabel(logoIcon);
-        } else {
-            logoLabel = new JLabel("Downtown Cafe");
-            logoLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        }
-        logoLabel.setBounds(20, 20, 200, 50);
+        // Logo (fallback to text if image not found)
+        JLabel logoLabel = new JLabel("Downtown Cafe");
+        logoLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        logoLabel.setBounds(20, 20, 300, 50);
         backgroundPanel.add(logoLabel);
 
         // Customer details
         addCustomerDetailFields(backgroundPanel);
 
-        // Bill area with enhanced styling
+        // Bill area
         billArea = new JTextArea();
         billArea.setBackground(Color.WHITE);
         billArea.setForeground(Color.BLACK);
@@ -94,7 +90,7 @@ public class DowntownCafeBillingSystem extends JFrame {
         // Discount field
         addDiscountField(backgroundPanel);
 
-        // Final amount label without an outline
+        // Final amount label
         finalAmountLabel = new JLabel("Final Amount: ₹0.00");
         finalAmountLabel.setBounds(20, 480, 250, 30);
         finalAmountLabel.setFont(new Font("Arial", Font.BOLD, 16));
@@ -102,7 +98,7 @@ public class DowntownCafeBillingSystem extends JFrame {
         finalAmountLabel.setBorder(null);
         backgroundPanel.add(finalAmountLabel);
 
-        // Button panel with vertical layout
+        // Button panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(3, 1, 10, 10));
         buttonPanel.setBounds(360, 200, 300, 150);
@@ -145,7 +141,6 @@ public class DowntownCafeBillingSystem extends JFrame {
         addItemButton.addActionListener(e -> addItemToBill());
         backgroundPanel.add(addItemButton);
 
-        // Make sure the frame is visible after adding all components
         setVisible(true);
     }
 
@@ -197,7 +192,7 @@ public class DowntownCafeBillingSystem extends JFrame {
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                button.setBackground(button.getBackground().darker());
+                button.setBackground(bgColor.darker());
             }
 
             @Override
